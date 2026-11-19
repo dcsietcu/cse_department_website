@@ -1,6 +1,7 @@
 import SiteFooter from './site-footer';
 import SiteHeader from './site-header';
 import SiteInteractions from './site-interactions';
+import QuickViewDrawer from './quick-view-drawer';
 
 export default function SiteTemplate({ children }) {
   return (
@@ -17,6 +18,7 @@ export default function SiteTemplate({ children }) {
         {children}
         <SiteFooter />
       </div>
+      <QuickViewDrawer />
       <SiteInteractions />
     </>
   );

@@ -115,7 +115,7 @@ export default function SiteInteractions() {
         });
       });
 
-      /* ---------- image-comparison style light -> dark wipe ----------
+                  /* ---------- image-comparison style light -> dark wipe ----------
          Mirrors the ImageComparisonSpring component: a dark "image" is
          revealed from top to bottom behind a thin slider line, with a
          fast spring (bounce ~0.3) instead of a linear scroll tween.     */
@@ -124,11 +124,6 @@ export default function SiteInteractions() {
         if (!wipe) return;
 
         var root = document.documentElement;
-        var supportsBackdrop = !!(window.CSS && CSS.supports &&
-          (CSS.supports("backdrop-filter", "invert(1)") ||
-           CSS.supports("-webkit-backdrop-filter", "invert(1)")));
-
-        // Spring easing: quick but smooth, damping ratio still 1 - bounce.
         var stiffness = 260;
         var damping = 2 * Math.sqrt(stiffness) * 0.7;
         var state = { target: 0, value: 0, velocity: 0 };
@@ -144,17 +139,14 @@ export default function SiteInteractions() {
           lastRender = x;
           root.style.setProperty("--wipe-y", x.toFixed(2) + "%");
           root.style.setProperty("--photo-invert", clamp(state.value, 0, 1).toFixed(3));
-          wipe.classList.toggle("is-active", x > 1 && x < 99);
+          wipe.classList.toggle("is-active", x > 0.5 && x < 99.5);
+          document.body.classList.toggle("header-dark", x > 2);
           document.body.classList.toggle("wipe-complete", x >= 99);
-          if (!supportsBackdrop) {
-            document.body.classList.toggle("theme-dark", state.value > 0.5);
-          }
         }
 
         function frame(now) {
           var dt = Math.min((now - (frame.last || now)) / 1000, 0.032) || 0.016;
           frame.last = now;
-          // Sub-stepping keeps the spring stable at any frame rate.
           var steps = 2;
           var h = dt / steps;
           for (var i = 0; i < steps; i++) {
@@ -166,14 +158,19 @@ export default function SiteInteractions() {
           wipeFrame = requestAnimationFrame(frame);
         }
 
-        // Smoothly darken on the way to the HOD section, then stay dark
-        // for the rest of the page.
-        var hod = document.getElementById("hod");
-
+        // Wipe effect runs across the hero section and completes at the bottom of the hero
         function themeTarget() {
-          if (!hod) return 0;
-          var hodTop = hod.getBoundingClientRect().top + window.scrollY;
-          var darkEnd = Math.max(1, hodTop - window.innerHeight);
+          var hero = document.querySelector(".hero");
+          if (!hero) return 0;
+          var heroActions = hero.querySelector(".hero-actions");
+          var darkEnd = 320;
+          if (heroActions) {
+            var actionsRect = heroActions.getBoundingClientRect();
+            var actionsTop = actionsRect.top + window.scrollY;
+            darkEnd = Math.max(220, Math.min(420, actionsTop - 200));
+          } else {
+            darkEnd = Math.max(220, Math.min(420, (hero.offsetHeight || 600) * 0.55));
+          }
           return clamp(window.scrollY / darkEnd, 0, 1);
         }
 
@@ -203,7 +200,7 @@ export default function SiteInteractions() {
           root.style.removeProperty("--wipe-y");
           root.style.removeProperty("--photo-invert");
           wipe.classList.remove("is-active");
-          document.body.classList.remove("wipe-complete", "theme-dark");
+          document.body.classList.remove("wipe-complete", "header-dark");
         });
       })();
 

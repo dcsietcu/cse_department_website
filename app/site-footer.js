@@ -7,9 +7,7 @@ export default function SiteFooter() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link className="brand" href="/">
-              <span aria-hidden="true" className="brand-mark">
-                <i></i><i></i><i></i><i></i>
-              </span><span className="brand-text">Computer Science<span className="brand-sub">Institute of Engineering and Technology, University of Calicut</span></span>
+              <img src="/photo/cse-logo.jpg" alt="CSE Department Logo" className="brand-logo-img" width="38" height="38" /><span className="brand-text">Computer Science<span className="brand-sub">Institute of Engineering and Technology, University of Calicut</span></span>
             </Link>
             <p>Department of Computer Science<br />Institute of Engineering and Technology, University of Calicut, Thenhipalam, Kerala, India<br />PIN 673636</p>
           </div>

@@ -15,13 +15,32 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const activePath = ['/', '/research', '/contact'].includes(pathname) ? pathname : '/about';
 
+  const handleQuickView = () => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('toggle-quick-view'));
+    }
+  };
+
   return (
     <header className="site-header">
       <div className="shell header-inner">
-        <Link className="brand" href="/">
-          <span aria-hidden="true" className="brand-mark"><i /><i /><i /><i /></span>
-          <span className="brand-text">Computer Science<span className="brand-sub">IET Calicut</span></span>
-        </Link>
+        <div className="header-left">
+          <button
+            type="button"
+            className="quick-view-hamburger"
+            onClick={handleQuickView}
+            aria-label="Open Quick View"
+            title="Quick View"
+          >
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
+          <Link className="brand" href="/">
+            <img src="/photo/cse-logo.jpg" alt="CSE Department Logo" className="brand-logo-img" width="38" height="38" />
+            <span className="brand-text">Computer Science<span className="brand-sub">IET Calicut</span></span>
+          </Link>
+        </div>
         <nav aria-label="Primary" className="nav" id="primary-nav">
           {links.map(([href, label]) => (
             <Link
