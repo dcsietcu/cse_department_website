@@ -30,6 +30,11 @@ export default function FacultyPage() {
               <p>ARYA A SURYA · ASSISTANT PROFESSOR</p>
             </article>
             <article className="profile-card">
+              <img alt="RUBY FATHIMA AC" loading="lazy" src="/photo/staff/ruby.jpeg" />
+              <h3>Faculty Member</h3>
+              <p>FATHIMA MURSHIDA K · ASSISTANT PROFESSOR</p>
+            </article>
+            <article className="profile-card">
               <img alt="Fathima Murshida K" loading="lazy" src="/photo/staff/murshida.jpeg" />
               <h3>Faculty Member</h3>
               <p>FATHIMA MURSHIDA K · ASSISTANT PROFESSOR</p>
@@ -47,17 +52,17 @@ export default function FacultyPage() {
             <article className="profile-card">
               <img alt="Ancy P" loading="lazy" src="/photo/staff/labmain.jpeg" />
               <h3>Faculty Member</h3>
-              <p>ANCY P · ASSISTANT PROFESSOR</p>
+              <p>ANCY P · INSTRUCTOR</p>
             </article>
             <article className="profile-card">
               <img alt="Dhanya P S" loading="lazy" src="/photo/staff/lab1.jpeg" />
               <h3>Faculty Member</h3>
-              <p>DHANYA P S · ASSISTANT PROFESSOR</p>
+              <p>DHANYA P S · INSTRUCTOR</p>
             </article>
             <article className="profile-card">
               <img alt="Subhashini" loading="lazy" src="/photo/staff/lab2.jpeg" />
               <h3>Faculty Member</h3>
-              <p>SUBHASHINI · ASSISTANT PROFESSOR</p>
+              <p>SUBHASHINI · INSTRUCTOR</p>
             </article>
           </div>
         </div>
